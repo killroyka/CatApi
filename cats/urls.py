@@ -6,4 +6,3 @@ router = SimpleRouter(use_regex_path=False)
 router.register(r'breeds', BreedViewSet)
 router.register(r'cats', CatsViewSet, basename="cats")
 urlpatterns = router.urls
-print(urlpatterns)
