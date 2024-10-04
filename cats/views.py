@@ -14,7 +14,7 @@ class BreedViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = BreedSerializer
     permission_classes = (IsOwnerOrReadOnly, IsAuthenticated)
 
-    @action(methods=['get'], url_path='cats', detail=True)
+    @action(methods=['get'], url_path='cats', detail=True, permission_classes=[IsAuthenticated])
     def cats(self, request, pk: int):
         breed = Breed.objects.filter(id=pk).exists()
         if not breed:
@@ -31,7 +31,5 @@ class CatsViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.Retriev
     queryset = Cat.objects.all().prefetch_related('grades')
     serializer_class = CatSerializer
     permission_classes = (IsOwnerOrReadOnly, IsAuthenticated)
-
-    # TODO permisions
 
 
